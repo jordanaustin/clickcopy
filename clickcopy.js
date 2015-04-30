@@ -8,6 +8,15 @@
 
     message.style.display = 'none';
 
+    function showMessage(msg) {
+        message.textContent = msg;
+        message.style.display = '';
+
+        setTimeout(function() {
+            message.style.display = 'none';
+        },2000);
+    }
+
     clickCopyBtn.addEventListener('click', function(event) {
         var selection = window.getSelection();
         var noSelection = selection.isCollapsed;
@@ -20,17 +29,15 @@
         try {
             var copied = document.execCommand('copy');
             var copyMessage = copied ? 'copied' : 'cannot copy';
-            message.textContent = copyMessage;
-            message.style.display = '';
-
-            setTimeout(function() {
-                message.style.display = 'none';
-            },2000);
+            showMessage(copyMessage);
         } catch(err) {
             console.warn("document.execCommand('copy') not supported");
+            showMessage('cannot copy');
         }
 
-        selection.removeAllRanges();
+        if (noSelection) {
+            selection.removeAllRanges();
+        }
     });
 
 }());
