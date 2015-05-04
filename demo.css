@@ -5,10 +5,19 @@ body {
 }
 
 
-.click-copy {
+.click-copy,
+.click-paste {
     padding: 1em;
     font-size: 1em;
     background: #741D93;
     border: none;
     color: white;
+}
+
+
+textarea {
+    display: block;
+    width: 86vw;
+    height: 100px;
+    margin: 1.5em auto;
 }
